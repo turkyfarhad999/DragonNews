@@ -24,7 +24,7 @@ const handlesighnout= async ()=> {
 await authClient.signOut({
   fetchOptions: {
     onSuccess: () => {
-      router.push("/home");
+      router.push("/category/01");
     },
   },
 });
