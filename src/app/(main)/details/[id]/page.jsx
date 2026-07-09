@@ -11,7 +11,7 @@ const page = async({params}) => {
    console.log(data)
     return (
         <div className='grid grid-cols-3 container mx-auto gap-6 '>
-             <div className='col-span-2'>
+             <div className=' col-span-3 mx-2 md:col-span-2'>
                 <h2 className='font-semibold text-2xl my-3'>Dragon news</h2>
             <Image 
             src={ data.image_url}
@@ -22,7 +22,7 @@ const page = async({params}) => {
             <h2 className='text-[#706F6F]'>{data.details}</h2>
             <Link href={`/category/${data.category_id}`} className='btn my-2 bg-[#D72050] text-[#FFFFFF]'>All news in this category ...</Link>
             </div>
-            <div>
+            <div className='hidden md:block '>
                 <Right></Right>
             </div>
         </div>
