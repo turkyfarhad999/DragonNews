@@ -1,16 +1,34 @@
+'use client'
 import React from 'react';
 import Navlink from './Navlink';
 import Image from 'next/image';
 import navlogo from'@/assets/user.png'
 import Link from 'next/link';
+import { authClient } from '@/libs/auth-client';
+import { useRouter } from 'next/navigation';
+
 
 const Navbar = () => {
+  const router = useRouter()
+  const { data: session } = authClient.useSession()
+  console.log(session)
 const links=<>
 <Navlink href={'/'}>Home</Navlink>
 <Navlink href={'/career'}>About</Navlink>
 <Navlink href={'/about'}>Career</Navlink>
 
 </>
+const handlesighnout= async ()=> {
+ 
+
+await authClient.signOut({
+  fetchOptions: {
+    onSuccess: () => {
+      router.push("/home");
+    },
+  },
+});
+}
     return (
         <div>
            <div className="navbar container mx-auto ">
@@ -33,12 +51,16 @@ const links=<>
     </ul>
   </div>
   <div className="navbar-end flex  gap-2">
+   {session?.user && <p>welcome {session.user.name}</p>}
     <Image
     src={navlogo}
     width={30}
     height={30}
     alt='nav'/>
-    <Link href={'/login'} className="btn bg-[#403F3F] text-white font-semibold">Login</Link>
+   {session?.user
+            ? <button onClick={handlesighnout} className="btn bg-[#403F3F] text-white font-semibold">Logout</button>
+            : <Link href={'/login'} className="btn bg-[#403F3F] text-white font-semibold">Login</Link>
+          }
   </div>
 </div>
         </div>

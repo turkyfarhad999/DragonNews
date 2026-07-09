@@ -1,9 +1,21 @@
+'use client'
 import Image from 'next/image';
 import React from 'react';
 import { FaFacebookF, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-icons/fa';
 import playground from '@/assets/class.png'
 import swim from '@/assets/swimming.png'
 import classs from '@/assets/playground.png'
+import { authClient } from '@/libs/auth-client';
+const signInG = async () => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+};
+const signInGit = async () => {
+    const data = await authClient.signIn.social({
+        provider: "github"
+    })
+}
 
 const Right = () => {
     return (
@@ -11,8 +23,8 @@ const Right = () => {
             <div className='px-5'>
                 <h2 className='font-bold text-2xl my-3'>Login with</h2>
                 <div className='flex flex-col gap-2'>
-                <button className='btn text-sky-300 border border-sky-300' > <FaGoogle /> login with Google</button>
-                <button className='btn text-gray-600 border   border-gray-600'><FaGithub />login with Github</button>
+                <button onClick={signInG} className='btn text-sky-300 border border-sky-300' > <FaGoogle /> login with Google</button>
+                <button onClick={signInGit} className='btn text-gray-600 border   border-gray-600'><FaGithub />login with Github</button>
                 </div>
             </div>
             <div className='px-5'>

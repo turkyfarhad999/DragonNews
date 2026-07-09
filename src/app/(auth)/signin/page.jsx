@@ -7,7 +7,7 @@ const page = () => {
      const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = async(data) =>{
         const { data:res, error } = await authClient.signUp.email({
-   name:"turkyyyyy",
+   name:"nihon",
     email:data.email, // required
     password:data.password, // required
     
